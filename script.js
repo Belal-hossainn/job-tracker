@@ -14,7 +14,7 @@ let currentStatus = "all";
 
 const jobContainer = document.getElementById("job-container");
 
-// ================= RENDER ALL JOBS =================
+// ================= RENDER ALL JOBS DATA =================
 function renderAll(){
 
     jobContainer.innerHTML = "";
@@ -32,7 +32,7 @@ function renderAll(){
     updateCounts();
 }
 
-// ================= UPDATE COUNTS =================
+// ================= UPDATE COUNTS STATUS =================
 function updateCounts(){
 
     let interviewList = jobs.filter(function(job){
@@ -51,7 +51,7 @@ function updateCounts(){
     document.getElementById("interview-count").innerText = interview;
     document.getElementById("rejected-count").innerText = rejected;
 
-    // ✅ SECTION COUNT
+    // JOB COUNT IN SECTION
     if(currentStatus === "all"){
         document.getElementById("section-count").innerText = total + " jobs";
     }
@@ -64,18 +64,18 @@ function updateCounts(){
         document.getElementById("section-count").innerText = rejected + " jobs";
     }
 }
-// ================= CARD TEMPLATE =================
+// =================  JOB CARD TEMPLATE  CREATE=================
 function createCard(job){
 
     return `
-    <div class="card bg-white flex justify-between p-6 rounded">
+    <div class="card bg-white flex justify-between sm:flex-col md:flex-col lg:flex-row p-6 rounded">
 
         <div>
-            <p class="font-bold text-xl">${job.company}</p>
+            <p class="font-bold text-xl text-[#002C5C]">${job.company}</p>
             <p class="text-gray-500">${job.position}</p>
             <p class="text-sm text-gray-400">${job.type}</p>
 
-            <button class="bg-blue-100 px-3 py-1 mt-2">
+            <button class="bg-blue-100 px-3 py-1 mt-2 text-[#002C5C] font-bold rounded">
                 ${ job.status.toUpperCase()}
             </button>
 
@@ -94,14 +94,14 @@ function createCard(job){
             </div>
         </div>
 
-        <button onclick="deleteJob(${job.id})" class="text-red-500">
-            <img src="./assets/delete_icon.png" class="w-5  cursor-pointer"  alt="Delete Job">
+        <button onclick="deleteJob(${job.id})" class="text-red-500 sm:mt-4 md:mt-4 lg:mt-0">
+            <img src="./assets/delete_icon.png" class="w-7 cursor-pointer"  alt="Delete Job">
         </button>
 
     </div>`;
 }
 
-// ================= RENDER INTERVIEW =================
+// ================= RENDER INTERVIEW JOBS =================
 function renderInterviewList(){
 
     let interviewList = jobs.filter(function(job){
@@ -123,7 +123,7 @@ function renderInterviewList(){
     updateCounts();
 }
 
-// ================= RENDER REJECTED =================
+// ================= RENDER REJECTED JOBS =================
 function renderRejected(){
 
     let rejectedList = jobs.filter(function(job){
@@ -181,7 +181,7 @@ function changeTab(tab){
 }
 
 
-// ================= APPLY CURRENT TAB =================
+// ================= APPLY CURRENT TAB FUNCTIONALITY =================
 function applyCurrentTab(){
 
     if(currentStatus === "all"){
@@ -197,7 +197,7 @@ function applyCurrentTab(){
     }
 }
 
-// ================= DELETE JOB =================
+// ================= DELETE JOBS CARD  =================
 function deleteJob(id){
 
     jobs = jobs.filter(function(job){
@@ -206,17 +206,17 @@ function deleteJob(id){
 
     applyCurrentTab();
 }
-// ================= EMPTY UI =================
+// ================= EMPTY UI CREATION  =================
 function emptyUI(){
     return `
     <div class=" bg-white text-center py-10 rounded">
         <div class="text-6xl mx-auto w-24">
             <img src="./assets/jobs.png" alt="Jobs">
         </div>
-        <p class="text-xl font-bold text-gray-500">No Jobs Available</p>
+        <p class="text-xl font-bold  text-[#002C5C]">No Jobs Available</p>
         <p class="text-gray-500">Check back later for new job opportunities</p>
     </div>`;
 }
 
-
+// ================= INITIAL RENDER ALL JOBS =================
 renderAll();
