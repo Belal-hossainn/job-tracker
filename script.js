@@ -83,19 +83,19 @@ function createCard(job){
 
             <div class="space-x-2 mt-3">
                 <button onclick="updateStatus(${job.id}, 'interview')" 
-                class="border border-green-500 px-3 py-1 text-green-600">
+                class="border border-green-500 px-3 py-1 text-green-600 cursor-pointer">
                 Interview
                 </button>
 
                 <button onclick="updateStatus(${job.id}, 'rejected')" 
-                class="border border-red-500 px-3 py-1 text-red-500">
+                class="border border-red-500 px-3 py-1 text-red-500 cursor-pointer">
                 Rejected
                 </button>
             </div>
         </div>
 
         <button onclick="deleteJob(${job.id})" class="text-red-500">
-            <img src="/delete_icon.png" class="w-5  cursor-pointer"  alt="Delete Job">
+            <img src="./assets/delete_icon.png" class="w-5  cursor-pointer"  alt="Delete Job">
         </button>
 
     </div>`;
@@ -196,3 +196,27 @@ function applyCurrentTab(){
         renderRejected();
     }
 }
+
+// ================= DELETE JOB =================
+function deleteJob(id){
+
+    jobs = jobs.filter(function(job){
+        return job.id !== id;
+    });
+
+    applyCurrentTab();
+}
+// ================= EMPTY UI =================
+function emptyUI(){
+    return `
+    <div class=" bg-white text-center py-10 rounded">
+        <div class="text-6xl mx-auto w-24">
+            <img src="./assets/jobs.png" alt="Jobs">
+        </div>
+        <p class="text-xl font-bold">No Jobs Available</p>
+        <p class="text-gray-500">Check back later for new job opportunities</p>
+    </div>`;
+}
+
+
+renderAll();
