@@ -100,3 +100,47 @@ function createCard(job){
 
     </div>`;
 }
+
+// ================= RENDER INTERVIEW =================
+function renderInterviewList(){
+
+    let interviewList = jobs.filter(function(job){
+        return job.status === "interview";
+    });
+
+    jobContainer.innerHTML = "";
+
+    if(interviewList.length === 0){
+        jobContainer.innerHTML = emptyUI();
+        updateCounts();
+        return;
+    }
+
+    for(let job of interviewList){
+        jobContainer.innerHTML += createCard(job);
+    }
+
+    updateCounts();
+}
+
+// ================= RENDER REJECTED =================
+function renderRejected(){
+
+    let rejectedList = jobs.filter(function(job){
+        return job.status === "rejected";
+    });
+
+    jobContainer.innerHTML = "";
+
+    if(rejectedList.length === 0){
+        jobContainer.innerHTML = emptyUI();
+        updateCounts();
+        return;
+    }
+
+        for(let job of rejectedList){
+        jobContainer.innerHTML += createCard(job);
+    }
+
+    updateCounts();
+}
