@@ -213,7 +213,7 @@ function emptyUI(){
         <div class="text-6xl mx-auto w-24">
             <img src="./assets/jobs.png" alt="Jobs">
         </div>
-        <p class="text-xl font-bold">No Jobs Available</p>
+        <p class="text-xl font-bold text-gray-500">No Jobs Available</p>
         <p class="text-gray-500">Check back later for new job opportunities</p>
     </div>`;
 }
