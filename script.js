@@ -144,3 +144,55 @@ function renderRejected(){
 
     updateCounts();
 }
+
+
+// ================= UPDATE STATUS =================
+function updateStatus(id, newStatus){
+
+    let job = jobs.find(function(item){
+        return item.id === id;
+    });
+
+    if(job.status === newStatus){
+        job.status = "not applied";
+    } else {
+        job.status = newStatus;
+    }
+
+    applyCurrentTab();
+}
+
+// ================= TOGGLE HANDLING =================
+function changeTab(tab){
+
+    currentStatus = tab;
+
+    let buttons = document.getElementsByClassName("tab-btn");
+
+    
+    for(let btn of buttons){
+        btn.classList.remove("bg-blue-500", "text-white");
+        btn.classList.add("bg-white", "text-black");
+    }
+    event.target.classList.remove("bg-white", "text-black");
+    event.target.classList.add("bg-blue-500", "text-white");
+
+    applyCurrentTab();
+}
+
+
+// ================= APPLY CURRENT TAB =================
+function applyCurrentTab(){
+
+    if(currentStatus === "all"){
+        renderAll();
+    }
+
+    if(currentStatus === "interview"){
+        renderInterviewList();
+    }
+
+    if(currentStatus === "rejected"){
+        renderRejected();
+    }
+}
